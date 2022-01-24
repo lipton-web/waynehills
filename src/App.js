@@ -1,11 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
 
 import Main from './Main';
+
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .clickable {
+    cursor: pointer!important;
+  }
+`
 
 function App() {
   return (
     <>
+      <GlobalStyle/>
       <Main/>
     </>
     // <div className="App">
