@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 
 import Footer from "./components/Footer";
 import { Img } from "./components/common/Img";
 
-import bg from "./img/main/bg.mp4"
+import bg from "./img/bg.mp4"
 import head from "./img/main/i_logo_head.png"
 import main from "./img/main/logo_main.png"
 import profile from "./img/main/i_profile_w.png"
@@ -13,8 +14,13 @@ import illust from "./img/main/main_illust.png"
 
 
 
+
 const Main = () => {
+
+	const history = useHistory()
+
 	return (
+		<>
 		<Container>
 			<Video autoPlay loop src={bg} /> 
 
@@ -22,7 +28,7 @@ const Main = () => {
 				<Img src={head} alt="head" width="300" height="27.5" />
 
 				<span id="top-right">
-					<span className="clickable">회원가입</span>
+					<span className="clickable" onClick={() => history.push("/login")}>회원가입</span>
 					<span id="button-login" className="clickable">
 						<span id="button-login">로그인</span>
 						<Img src={profile} alt="profile" width="27" height="27" />
@@ -51,9 +57,11 @@ const Main = () => {
 				</MiddleRight>
 			</Middle>
 
-			<Footer/>
+			
 
 		</Container>
+		<Footer/>
+		</>
 	)
 }
 
@@ -171,12 +179,12 @@ const MiddleRight = styled.span`
 	}
 
 	#make-video-container-right-middle {
-		margin: 10px 0 0;
+		margin: -10px 0 0;
     font-size: 36px;
 	}
 
 	#make-video-container-right-bottom {
-    margin: 40px 0 0;
+    margin: 20px 0 0;
     font-size: 18px;
     color: #d8d8d8;
 	}

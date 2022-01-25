@@ -8,12 +8,13 @@ import facebook from "../img/footer/i-sns-facebook.png"
 import youtube from "../img/footer/i-sns-youtube.png"
 import instagram from "../img/footer/i-sns-instagram.png"
 import copyright from "../img/footer/i-copyright.png";
+import Language from "./common/Language";
 
 
 const Footer = () => {
 	return (
 		<FooterContainer>
-			{/* <FooterInner> */}
+			<FooterInner>
 			<div id="footer-container" className="align-center">
 				<span id="footer-block-1" className="mat-body-1">
 
@@ -46,11 +47,12 @@ const Footer = () => {
 						&nbsp;&nbsp;|&nbsp;&nbsp; e-mail:waynehills.ventures@gmail.com &nbsp;&nbsp;|&nbsp;&nbsp; Powered by Shutterstock 
 					</Bottom>
 
-
 				</span>
 
+				<Language />
 			</div>
-			{/* </FooterInner> */}
+			</FooterInner>
+			
 		</FooterContainer>
 	)
 }

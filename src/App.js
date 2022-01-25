@@ -1,8 +1,9 @@
-import './App.css';
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { Route } from 'react-router-dom';
 
 import Main from './Main';
+import Login from './Login';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -22,7 +23,8 @@ function App() {
   return (
     <>
       <GlobalStyle/>
-      <Main/>
+      <Route exact path="/" component={Main} />
+      <Route exact path="/login" component={Login} />
     </>
     // <div className="App">
     //   <header className="App-header">
