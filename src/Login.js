@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-import Button from "./components/common/Button";
-import { Img } from "./components/common/Img";
-import Text from "./components/common/Text";
-import { Wrap } from "./components/common/Wrap";
+import { Alert, Img } from "./components/common/index"
 import Footer from "./components/Footer";
+
+import Step0 from "./components/Login/Step0";
+import Step1 from "./components/Login/Step1";
+import Step2 from "./components/Login/Step2";
 
 import bg from "./img/bg.mp4"
 import logo from "./img/login/i_logo_w_nomal.png"
 import close from "./img/login/i_x_g.png"
-import checkOff from "./img/login/i_select_small_g.png"
-import checkOn from "./img/login/i_select_small_v.png"
-import google from "./img/login/i_google_b.png"
-import facebook from "./img/login/i_facebook_b.png"
-
+import Progress from "./components/Login/Progress.js";
 
 const Login = () => {
 
 	const history = useHistory()
 	const [check, setCheck] = useState(false)
+	const [ready, setReady] = useState(false)
+	const [tap, setTap] = useState(0)
 
 
 	return (
@@ -33,132 +32,43 @@ const Login = () => {
 
 			<LoginContainer>
 				<LoginBox>
+					{ tap > 0 && <Progress tap={tap} /> }
 					<Outer>
 						<Img src={close} alt="close" width="28" height="28" pointer _onClick={()=>history.push("/")} />
 					</Outer>
 
 					<Inner>
-						<AppLogin>
-							<div id="container">
-								<div id="title">로그인</div>
-
-								<form>
-									<div>
-										<input id="email" type="text" placeholder="이메일 입력"/>
-										<input id="password" type="password" placeholder="비밀번호 입력"/>
-									</div>
-
-									<Wrap direction="row" content="space-between" margin="8px 0 22px">
-										<Text
-											color="#AAA"
-											size="12px"
-										>
-											비밀번호를 잊으셨나요?
-										</Text>
-										<Text
-											color="#767676"
-											size="12px"
-											bottom="1px solid #aaa"
-										>
-											비밀번호 찾기
-										</Text>
-									</Wrap>
-	
-									<Button
-										width="320px"
-										height="50px"
-										borderRadius="8px"
-										bg="#650aa8"
-										color="#fff"
-										margin="0 0 16px"
-										size="16px"
-									>
-										로그인
-									</Button>
-								</form>
-
-								<Wrap 
-									direction="row"
-									content="flex-start"
-									_onClick={()=>{setCheck(!check)}}
-								>
-									{
-										check ?
-										<Img src={checkOn} alt="check" width="20" height="20" cursor="pointer" />
-										:
-										<Img src={checkOff} alt="check_off" width="20" height="20" cursor="pointer" />
-									}
-
-									<Text
-										color="#fff"
-										size="12px"
-										cursor="pointer"
-										margin="0 0 0 8px"
-									>
-										로그인 정보 저장
-									</Text>
-								</Wrap>
-
-								<Wrap
-									direction="row"
-									content="space-around"
-									gridGap="6px"
-									gap="6px"
-									margin="28px 0 48px"
-								>
-									<Wrap pointer>
-										<Img src={google} alt="google" width="20" height="20" />
-										<Text size="12px" color="#767676">
-											구글로 로그인하기
-										</Text>
-									</Wrap>
-										<Text color="#3c3c3c">|</Text>
-										<Wrap pointer>
-										<Img src={facebook} alt="facebook"  width="20" height="20" />
-										<Text size="12px" color="#767676">
-											페이스북으로 로그인하기
-										</Text>
-									</Wrap>
-								</Wrap>
-
-								<Wrap
-									direction="column"
-									items="center"
-									gridGap="10px"
-									gap="10px"
-								>
-									<Text size="12px" color="#AAA">
-										회원가입하고 영상을 제작해보세요!
-									</Text>
-									<Button
-										width="320px"
-										height="50px"
-										// radius="8px"
-										bg="#333"
-										color="#fff"
-										size="16px"
-										margin="0 0 16px"
-									>
-										회원가입
-									</Button>
-								</Wrap>
-							</div>
-
-							
-						</AppLogin>
+						{/* 내용 바뀌는 부분 */}
+						<TabContent tap={tap} setTap={setTap} />
 					</Inner>
+
 				</LoginBox>
 			</LoginContainer>
 			
-
-
-			{/* <Footer /> */}
+			<FooterSection>
+				<Footer />
+			</FooterSection>
+			
 		</Container>
+		
+		{ ready && <Alert bg="#650aa8">준비중입니다.</Alert> }
+		
 		</>
 	)
 }
 
 export default Login;
+
+function TabContent(props) {
+
+	if (props.tap === 0) {
+		return <Step0 setTap={props.setTap} />
+	} else if (props.tap === 1) {
+		return <Step1 setTap={props.setTap} />
+	} else if (props.tap === 2) {
+		return <Step2 setTap={props.setTap} />
+	}
+}
 
 const Video = styled.video`
 	position: fixed;
@@ -204,7 +114,8 @@ const Outer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin: 30px;
+	margin: 30px 30px 10px 30px;
+	position: relative;
 `;
 
 const Inner = styled.div`
@@ -221,6 +132,7 @@ const AppLogin = styled.div`
 	#container {
 		width: 320px;
 		margin: 0 auto;
+
 
 		#title {
 			margin: 0 0 40px;
@@ -251,4 +163,10 @@ const AppLogin = styled.div`
 			box-sizing: border-box;
 		}
 	}
+`;
+
+const FooterSection = styled.div`
+	position: absolute;
+	left: 0;
+	bottom: 0;
 `;

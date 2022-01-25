@@ -5,7 +5,7 @@ import { Img } from "./Img";
 import global from "../../img/languageImg/i-global-g.png"
 import arrow from "../../img/languageImg/i-down-arrow-w.png"
 
-const Language = () => {
+export const Language = () => {
 
 	return (
 		<Container>
@@ -23,8 +23,6 @@ const Language = () => {
 		</Container>
 	)
 }
-
-export default Language;
 
 const Container = styled.span`
 	display: flex;

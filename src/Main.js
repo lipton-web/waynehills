@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
+import { Img } from "./components/common/index"
 import Footer from "./components/Footer";
-import { Img } from "./components/common/Img";
 
 import bg from "./img/bg.mp4"
 import head from "./img/main/i_logo_head.png"
@@ -11,8 +11,6 @@ import main from "./img/main/logo_main.png"
 import profile from "./img/main/i_profile_w.png"
 import play from "./img/main/i_play_w_b.png"
 import illust from "./img/main/main_illust.png"
-
-
 
 
 const Main = () => {
@@ -29,8 +27,8 @@ const Main = () => {
 
 				<span id="top-right">
 					<span className="clickable" onClick={() => history.push("/login")}>회원가입</span>
-					<span id="button-login" className="clickable">
-						<span id="button-login">로그인</span>
+					<span id="button-login" className="clickable" onClick={() => history.push("/login")}>
+						<span>로그인</span>
 						<Img src={profile} alt="profile" width="27" height="27" />
 					</span>
 				</span>
@@ -121,6 +119,7 @@ const Top = styled.div`
     flex-shrink: 0;
     grid-gap: 43px;
     gap: 43px;
+		letter-spacing: .0208em;
 	}
 `;
 

@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = (props) => {
+export const Button = (props) => {
+
   const {
-    text,
     _onClick,
-    is_float,
     children,
     margin,
     width,
@@ -16,15 +15,9 @@ const Button = (props) => {
     bg,
     radius,
     size,
+		flex,
+		innerBtn
   } = props;
-
-  // if (is_float) {
-  //   return (
-  //     <React.Fragment>
-  //       <FloatButton onClick={_onClick}>{text ? text : children}</FloatButton>
-  //     </React.Fragment>
-  //   );
-  // }
 
   const styles = {
     margin: margin,
@@ -35,13 +28,14 @@ const Button = (props) => {
     bg: bg,
     radius: radius,
     size: size,
-		height
+		height,
+		flex,
+		innerBtn,
   };
 
   return (
     <React.Fragment>
       <ElButton {...styles} onClick={_onClick}>
-        {/* {text ? text : children} */}
         {children}
       </ElButton>
     </React.Fragment>
@@ -56,7 +50,6 @@ Button.defaultProps = {
   margin: false,
   width: "100%",
   padding: null,
-  //아영 - 배경컬러,radius,size 추가
   bg: false,
   radius: "8px",
   size: false,
@@ -73,11 +66,24 @@ const ElButton = styled.button`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   cursor: pointer;
 	border-radius: ${(props) => props.radius};
-  /* ${(props) =>
-    props.borderRadius
-      ? `border-radius: ${props.borderRadius};`
-      : "border-radius: 3px;"} */
   font-size: ${(props) => props.size};
-`;
 
-export default Button;
+	${(props) => (props.flex &&
+	`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	`
+	)}
+
+	${(props) => (props.innerBtn &&
+	`
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 0;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	` )}
+`;

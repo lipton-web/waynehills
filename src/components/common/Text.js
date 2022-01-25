@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = (props) => {
+export const Text = (props) => {
+
   const {
     bold,
     color,
@@ -13,7 +14,11 @@ const Text = (props) => {
     _onClick,
     center,
 		bottom,
-		// height
+		pointer,
+		spacing,
+		div,
+		flex,
+		indent
   } = props;
 
   const styles = {
@@ -25,37 +30,76 @@ const Text = (props) => {
     center: center,
     padding: padding,
 		bottom: bottom,
-		// height
+		pointer,
+		spacing,
+		flex,
+		indent
   };
-  return (
-    <Span onClick={_onClick} {...styles}>
-      {children}
-    </Span>
-  );
+	
+	
+	if (div) {
+		return (
+			<Div onClick={_onClick} {...styles}>
+				{children}
+			</Div>
+		);
+	}
+
+	return (
+		<Span onClick={_onClick} {...styles}>
+			{children}
+		</Span>
+	);
 };
 
 Text.defaultProps = {
   children: null,
   bold: false,
-  color: "#222831",
-  // size: "14px",
+  color: "#FFF",
+  size: "12px",
   margin: false,
   cursor: false,
   _onClick: () => {},
   center: false,
-  // height: "-20px",
 };
+
 
 const Span = styled.span`
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
-  font-weight: ${(props) => (props.bold ? "600" : "400")};
-	height: "-20px";
+  font-weight: ${(props) => (props.bold ? "500" : "400")};
+	letter-spacing: ${(props) => props.spacing};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
 	${(props) => (props.pointer ? `cursor: pointer;` : "")};
   ${(props) => (props.center ? `text-align: center` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.bottom ? `border-bottom: ${props.bottom};` : "")};
+	${(props) => (props.center ? `text-align: center` : "")};
+	${(props) => (props.indent ? `text-indent: -6px` : "")};
+
+	${(props) => (props.flex && 
+	`
+	display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+	`
+	)}
 `;
 
-export default Text;
+const Div = styled.div`
+  color: ${(props) => props.color};
+  font-size: ${(props) => props.size};
+  font-weight: ${(props) => (props.bold ? "500" : "400")};
+	height: "-20px";
+	letter-spacing: ${(props) => props.spacing};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+	${(props) => (props.pointer ? `cursor: pointer;` : "")};
+  ${(props) => (props.center ? `text-align: center` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  ${(props) => (props.bottom ? `border-bottom: ${props.bottom};` : "")};
+	${(props) => (props.center ? `text-align: center` : "")};
+`;
+
+

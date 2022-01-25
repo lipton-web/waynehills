@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Img } from "./common/Img";
+import { Img, Text, Language } from "./common/index"
 
 import footer_logo from "../img/footer/i-footer-logo.png"
 import facebook from "../img/footer/i-sns-facebook.png"
 import youtube from "../img/footer/i-sns-youtube.png"
 import instagram from "../img/footer/i-sns-instagram.png"
 import copyright from "../img/footer/i-copyright.png";
-import Language from "./common/Language";
+
 
 
 const Footer = () => {
@@ -41,9 +41,9 @@ const Footer = () => {
 
 					<Bottom>
 						<Img src={copyright} alt="copyright-logo" width="30" height="30" />
-						<span id="copyright-text">Copyright 2021 waynehills ventures all rights reserved</span>
+						<Text size="12px" color="#AAA">Copyright 2021 waynehills ventures all rights reserved</Text>
 						&nbsp;&nbsp;|&nbsp;&nbsp;
-						<span id="terms-of-use" className="mat-body-2 clickable">이용약관</span>
+						<Text size="14px" color="#AAA">이용약관</Text>
 						&nbsp;&nbsp;|&nbsp;&nbsp; e-mail:waynehills.ventures@gmail.com &nbsp;&nbsp;|&nbsp;&nbsp; Powered by Shutterstock 
 					</Bottom>
 
@@ -70,7 +70,6 @@ const FooterContainer = styled.div`
 	flex-direction: column;
 	width: 100vw;
 	height: 100vh;
-	min-height: 1240px;
 	overflow: auto;
 	background-color: #000;
 	color: #fff;
@@ -125,6 +124,7 @@ const Top = styled.div`
 const Middle = styled.div`
 	margin: 2px 0 0;
 	font-size: 13px;
+	letter-spacing: .0208em;
 `;
 
 const Bottom = styled.div`
@@ -133,5 +133,6 @@ const Bottom = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	margin: 5px 0 0;
-	font-size: 12px;
+	font-size: 13px;
+	letter-spacing: .0208em;
 `;
