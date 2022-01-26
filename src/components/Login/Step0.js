@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { createContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
+import { newEmail } from "../../redux/modules/user";
 import { Alert, Button, Img, Text, Wrap } from "../common/index"
 
 import checkOff from "../../img/login/i_select_small_g.png"
@@ -9,13 +11,30 @@ import checkOn from "../../img/login/i_select_small_v.png"
 import google from "../../img/login/i_google_b.png"
 import facebook from "../../img/login/i_facebook_b.png"
 
+
 const Step0 = (props) => {
 
-	console.log(props)
-
+	const dispatch = useDispatch();
 	const history = useHistory()
+
+	const [userid, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+
 	const [check, setCheck] = useState(false)
+
 	const [ready, setReady] = useState(false)
+	const [alert, setAlert] = useState(false)
+
+
+	const Login = () => {
+		if (userid === "" || pwd === "") {
+			setAlert(true);
+			return
+		} else {
+			dispatch(newEmail(userid))
+			history.push("/ttv")
+		}
+	}
 
 	return (
 		<>
@@ -23,10 +42,14 @@ const Step0 = (props) => {
 				<div id="container">
 					<div id="title">로그인</div>
 
-					<form>
+					{/* <form> */}
 						<div>
-							<input id="email" type="text" placeholder="이메일 입력"/>
-							<input id="password" type="password" placeholder="비밀번호 입력"/>
+							<input id="email" type="text" placeholder="이메일 입력" 
+								onChange={(e) => {setId(e.target.value)}}
+							/>
+							<input id="password" type="password" placeholder="비밀번호 입력" 
+								onChange={(e) => {setPwd(e.target.value)}}
+							/>
 						</div>
 
 						<Wrap direction="row" content="space-between" margin="8px 0 22px">
@@ -41,7 +64,7 @@ const Step0 = (props) => {
 								size="12px"
 								bottom="1px solid #aaa"
 								pointer
-								_onClick={()=>{setReady(true)}}
+								_onClick={()=>{setReady(true); setAlert(false)}}
 							>
 								비밀번호 찾기
 							</Text>
@@ -55,10 +78,11 @@ const Step0 = (props) => {
 							color="#fff"
 							margin="0 0 16px"
 							size="16px"
+							_onClick={Login}
 						>
 							로그인
 						</Button>
-					</form>
+					{/* </form> */}
 
 					<Wrap 
 						direction="row"
@@ -89,7 +113,7 @@ const Step0 = (props) => {
 						gridGap="6px"
 						gap="6px"
 						margin="28px 0 48px"
-						_onClick={()=>{setReady(true)}}
+						_onClick={()=>{setReady(true); setAlert(false)}}
 					>
 						<Wrap pointer>
 							<Img src={google} alt="google" width="20" height="20" />
@@ -130,12 +154,11 @@ const Step0 = (props) => {
 				</div>
 			</AppLogin>
 
-			{
-				ready && <Alert bg="#650aa8">준비중입니다.</Alert>
-			}
+			{ ready && <Alert bg="#650aa8">준비중입니다.</Alert> }
+			{ alert && <Alert bg="#ff5f0a">입력하신 이메일과 비밀번호가 일치하지 않습니다.</Alert> }
 		</>
 	)
-}
+};
 
 export default Step0;
 

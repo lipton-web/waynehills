@@ -5,10 +5,13 @@ export const Wrap = (props) => {
 
   const { 
     children, margin, position, direction, content, 
-    _onClick, gridGap, gap, pointer, width, height, items
+    _onClick, gridGap, gap, pointer, width, height, items, textarea
   } = props;
 
-  const styles = { margin, position, direction, content, gridGap, gap, pointer, width, height, items };
+  const styles = { 
+    margin, position, direction, content, 
+    gridGap, gap, pointer, width, height, items, textarea
+  };
 
   return <Container onClick={_onClick} {...styles}>{children}</Container>;
 };
@@ -34,4 +37,11 @@ const Container = styled.div`
 	${(props) => (props.pointer ? `cursor: pointer;` : "")};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+
+  ${(props) => (props.textarea && `
+  background-color: #333;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 14px;
+  ` )}
 `;

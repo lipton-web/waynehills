@@ -16,7 +16,8 @@ export const Button = (props) => {
     radius,
     size,
 		flex,
-		innerBtn
+		innerBtn,
+    bold
   } = props;
 
   const styles = {
@@ -31,6 +32,7 @@ export const Button = (props) => {
 		height,
 		flex,
 		innerBtn,
+    bold
   };
 
   return (
@@ -67,6 +69,7 @@ const ElButton = styled.button`
   cursor: pointer;
 	border-radius: ${(props) => props.radius};
   font-size: ${(props) => props.size};
+  font-weight: ${(props) => (props.bold ? "700" : "400")};
 
 	${(props) => (props.flex &&
 	`

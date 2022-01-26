@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-import { Alert, Img } from "./components/common/index"
-import Footer from "./components/Footer";
+import { Alert, Img } from "../components/common/index"
+import Footer from "../components/Footer";
 
-import Step0 from "./components/Login/Step0";
-import Step1 from "./components/Login/Step1";
-import Step2 from "./components/Login/Step2";
+import Step0 from "../components/Login/Step0";
+import Step1 from "../components/Login/Step1";
+import Step2 from "../components/Login/Step2";
 
-import bg from "./img/bg.mp4"
-import logo from "./img/login/i_logo_w_nomal.png"
-import close from "./img/login/i_x_g.png"
-import Progress from "./components/Login/Progress.js";
+import bg from "../img/bg.mp4"
+import logo from "../img/login/i_logo_w_nomal.png"
+import close from "../img/login/i_x_g.png"
+import Progress from "../components/Login/Progress.js";
 
 const Login = () => {
 

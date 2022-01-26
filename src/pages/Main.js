@@ -2,15 +2,15 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
-import { Img } from "./components/common/index"
-import Footer from "./components/Footer";
+import { Img } from "../components/common/index"
+import Footer from "../components/Footer";
 
-import bg from "./img/bg.mp4"
-import head from "./img/main/i_logo_head.png"
-import main from "./img/main/logo_main.png"
-import profile from "./img/main/i_profile_w.png"
-import play from "./img/main/i_play_w_b.png"
-import illust from "./img/main/main_illust.png"
+import bg from "../img/bg.mp4"
+import head from "../img/main/i_logo_head.png"
+import main from "../img/main/logo_main.png"
+import profile from "../img/main/i_profile_w.png"
+import play from "../img/main/i_play_w_b.png"
+import illust from "../img/main/main_illust.png"
 
 
 const Main = () => {
@@ -44,7 +44,7 @@ const Main = () => {
 				</MiddleLeft>
 
 				<MiddleRight>
-					<div id="make-video-container" className="clickable">
+					<div id="make-video-container" className="clickable" onClick={() => history.push("/login")}>
 						<Img src={illust} alt="illust" width="235" height="190" margin="17px 0 0" />
 						<span id="make-video-container-right">
 							<div id="make-video-container-right-top">텍스트로 만드는 A.I영상</div>
